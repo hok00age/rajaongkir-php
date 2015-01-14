@@ -1,4 +1,5 @@
-# Panduan Penggunaan
+# RajaOngkir PHP Client
+Merupakan PHP Client untuk mengkonsumsi API dari RajaOngkir. Library ini memanfaatkan [Unirest](http://unirest.io/php.html) sebagai REST client.
 ## Instalasi
 RajaOngkir PHP Client tersedia di Packagist ([hok00age/rajaongkir](https://packagist.org/packages/hok00age/rajaongkir)) sehingga dapat diinstal lewat [Composer](http://getcomposer.org/).
 ```bash
