@@ -12,6 +12,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {"RajaOngkir\\": "src/"}
+        "psr-4": {"RajaOngkir\\": "src"}
     }
 }
