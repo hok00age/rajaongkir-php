@@ -1,5 +1,5 @@
 {
-    "name": "hok00age/rajaongkir-php",
+    "name": "hok00age/rajaongkir",
     "description": "PHP client for consuming RajaOngkir API",
     "require": {
         "mashape/unirest-php": "~1.2"
