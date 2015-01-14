@@ -21,10 +21,10 @@ class RajaOngkir {
         return \Unirest::get(RajaOngkir::$base_url . "province", array(), $params);
     }
 
-    function getCity($city_id = NULL, $province_id = NULL) {
-        $params = (is_null($city_id)) ? NULL : array('id' => $city_id);
-        if (!is_null($province_id)) {
-            $params['province'] = $province_id;
+    function getCity($province_id = NULL, $city_id = NULL) {
+        $params = (is_null($province_id)) ? NULL : array('province' => $province_id);
+        if (!is_null($city_id)) {
+            $params['id'] = $city_id;
         }
         return \Unirest::get(RajaOngkir::$base_url . "city", array(), $params);
     }
