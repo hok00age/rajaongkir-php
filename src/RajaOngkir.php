@@ -9,6 +9,8 @@ class RajaOngkir {
 
     public function __construct($api_key) {
         RajaOngkir::$api_key = $api_key;
+        \Unirest::defaultHeader("Content-Type", "application/x-www-form-urlencoded");
+        \Unirest::defaultHeader("key", RajaOngkir::$api_key);
     }
 
     function getProvince($province_id = NULL, $additional_headers = array()) {
