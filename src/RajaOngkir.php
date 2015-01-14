@@ -38,7 +38,7 @@ class RajaOngkir {
         if (!is_null($courier)) {
             $params['courier'] = $courier;
         }
-        return \Unirest::post(RajaOngkir::$base_url . "cost", array(), $params);
+        return \Unirest::post(RajaOngkir::$base_url . "cost", array(), http_build_query($params));
     }
 
 }
