@@ -14,7 +14,7 @@ class RajaOngkir {
     }
 
     function getProvince($province_id = NULL, $additional_headers = array()) {
-        $params = (is_null($province_id)) ? NULL : array('id' => $additional_headers);
+        $params = (is_null($province_id)) ? NULL : array('id' => $province_id);
         foreach ($additional_headers as $key => $value) {
             \Unirest::defaultHeader($key, $value);
         }
