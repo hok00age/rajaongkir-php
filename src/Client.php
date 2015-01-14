@@ -1,8 +1,8 @@
 <?php
 
-namespace hok00age;
+namespace RajaOngkir;
 
-class RajaOngkir {
+class Client {
 
     private static $api_key;
     private static $base_url = "http://rajaongkir.com/api/";
