@@ -10,5 +10,8 @@
             "name": "Damar Riyadi",
             "email": "damar@tahutek.net"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {"RajaOngkir\\": "src/RajaOngkir"}
+    }
 }
