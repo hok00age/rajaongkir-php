@@ -1,0 +1,15 @@
+{
+    "name": "hok00age/rajaongkir-php",
+    "description": "PHP client for consuming RajaOngkir API",
+    "require": {
+        "mashape/unirest-php": "~1.2"
+    },
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Damar Riyadi",
+            "email": "damar@tahutek.net"
+        }
+    ],
+    "minimum-stability": "stable"
+}
