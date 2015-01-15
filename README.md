@@ -38,6 +38,6 @@ $body = $cost->body;
 $json_body = $cost->raw_body;
 ```
 ### Dokumentasi lebih lanjut
-Silakan lihat code [RajaOngkir.php[(https://github.com/hok00age/rajaongkir-php/blob/master/src/RajaOngkir.php), di dalamnya terdapat komentar yang dapat membantu Anda.
+Silakan lihat code [RajaOngkir.php](https://github.com/hok00age/rajaongkir-php/blob/master/src/RajaOngkir.php), di dalamnya terdapat komentar yang dapat membantu Anda.
 ### Referensi
 [Dokumentasi RajaOngkir](http://rajaongkir.com/dokumentasi)
