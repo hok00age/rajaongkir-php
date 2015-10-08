@@ -1,0 +1,15 @@
+<phpunit  bootstrap="vendor/autoload.php"
+          colors="true"
+          convertErrorsToExceptions="true"
+          convertNoticesToExceptions="true"
+          convertWarningsToExceptions="true"
+          processIsolation="false"
+          stopOnFailure="false"
+          syntaxCheck="false"
+>
+	<testsuites>
+		<testsuite name="RajaOngkir Test">
+			<directory>tests</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>

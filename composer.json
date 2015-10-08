@@ -13,5 +13,8 @@
     ],
     "autoload": {
         "psr-4": {"hok00age\\": "src"}
-    }
+    },
+    "classmap" : [
+        "tests"
+    ]
 }
