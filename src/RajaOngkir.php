@@ -22,9 +22,9 @@ class RajaOngkir {
      * @param array $additional_headers Header tambahan seperti android-key, ios-key, dll
      */
     public function __construct($api_key, $additional_headers = array()) {
-        RajaOngkir::$api_key = $api_key;
+        self::$api_key = $api_key;
         \Unirest::defaultHeader("Content-Type", "application/x-www-form-urlencoded");
-        \Unirest::defaultHeader("key", RajaOngkir::$api_key);
+        \Unirest::defaultHeader("key", self::$api_key);
         foreach ($additional_headers as $key => $value) {
             \Unirest::defaultHeader($key, $value);
         }
@@ -37,7 +37,7 @@ class RajaOngkir {
      */
     function getProvince($province_id = NULL) {
         $params = (is_null($province_id)) ? NULL : array('id' => $province_id);
-        return \Unirest::get(RajaOngkir::$base_url . "province", array(), $params);
+        return \Unirest::get(self::$base_url . "province", array(), $params);
     }
 
     /**
@@ -51,7 +51,7 @@ class RajaOngkir {
         if (!is_null($city_id)) {
             $params['id'] = $city_id;
         }
-        return \Unirest::get(RajaOngkir::$base_url . "city", array(), $params);
+        return \Unirest::get(self::$base_url . "city", array(), $params);
     }
 
     /**
@@ -71,7 +71,7 @@ class RajaOngkir {
         if (!is_null($courier)) {
             $params['courier'] = $courier;
         }
-        return \Unirest::post(RajaOngkir::$base_url . "cost", array(), http_build_query($params));
+        return \Unirest::post(self::$base_url . "cost", array(), http_build_query($params));
     }
 
 }
