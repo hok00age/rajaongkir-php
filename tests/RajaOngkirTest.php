@@ -6,10 +6,15 @@ class RajaOngkirTest extends PHPUnit_Framework_Testcase
 {	
 
 	/**
-     *	@expectedException InvalidArgumentException
-     */
+	 *	@expectedException InvalidArgumentException
+	 */
 	public function testThrowExceptionIfAccountTypeParameterNotValid()
 	{
 		new RajaOngkir("apikey", "super");
+	}
+
+	public function testBaseUrlMatchWithAccountType()
+	{
+		
 	}
 }

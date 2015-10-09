@@ -28,9 +28,9 @@ class RajaOngkir {
             throw new \InvalidArgumentException("Unknown account type. Please provide the correct one.");
         }
 
-        self::$base_url .= "{$account_type}/";
-
+        self::$base_url = ($account_type == "pro") ? "http://pro.rajaongkir.com/api/" : self::$base_url . "{$account_type}/" ;
         self::$api_key = $api_key;
+
         \Unirest::defaultHeader("Content-Type", "application/x-www-form-urlencoded");
         \Unirest::defaultHeader("key", self::$api_key);
         foreach ($additional_headers as $key => $value) {
