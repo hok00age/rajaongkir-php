@@ -12,9 +12,5 @@ class RajaOngkirTest extends PHPUnit_Framework_Testcase
 	{
 		new RajaOngkir("apikey", "super");
 	}
-
-	public function testBaseUrlMatchWithAccountType()
-	{
-		
-	}
+	
 }
