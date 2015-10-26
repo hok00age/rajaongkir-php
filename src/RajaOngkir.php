@@ -28,7 +28,10 @@ class RajaOngkir {
             throw new \InvalidArgumentException("Unknown account type. Please provide the correct one.");
         }
 
-        self::$base_url .= "{$account_type}/";
+        if ($account_type == "pro")
+            self::$base_url = "http://pro.rajaongkir.com/api/";
+        else
+            self::$base_url .= "{$account_type}/";
 
         self::$api_key = $api_key;
         \Unirest::defaultHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -64,13 +67,15 @@ class RajaOngkir {
 
     /**
      * Fungsi untuk mendapatkan data ongkos kirim
-     * @param integer $origin ID kota asal
-     * @param integer $destination ID kota tujuan
+     * @param integer $origin ID kota/kecamatan asal
+     * @param integer $destination ID kota/kecamatan tujuan
      * @param integer $weight Berat kiriman dalam gram
      * @param string $courier Kode kurir, jika NULL maka tampilkan semua kurir
+     * @param string $originType tipe asal (city / subdistrict)
+     * @param string $destinationType tipe tujuan (city / subdistrict)
      * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
      */
-    function getCost($origin, $destination, $weight, $courier = NULL) {
+    function getCost($origin, $destination, $weight, $courier = NULL, $originType = NULL, $destinationType = NULL) {
         $params = array(
             'origin' => $origin,
             'destination' => $destination,
@@ -79,7 +84,82 @@ class RajaOngkir {
         if (!is_null($courier)) {
             $params['courier'] = $courier;
         }
+        if (in_array($originType, array("city", "subdistrict"))){
+            $params['originType'] = $originType;
+        }
+        if (in_array($destinationType, array("city", "subdistrict"))){
+            $params['destinationType'] = $destinationType;
+        }
         return \Unirest::post(self::$base_url . "cost", array(), http_build_query($params));
     }
 
+    /**
+    * Fungsi untuk mendapatkan data kecamatan berdasaran kota/kabupaten
+    * @param integer $city_id ID kota
+    * @param integer $subdistrict_id ID kecamatan
+    * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
+    */
+    function getSubdistrict($city_id, $subdistrict_id = NULL){
+        $params = array('city' => $city_id);
+        if (!is_null($subdistrict_id)) {
+            $params['id'] = $subdistrict_id;
+        }
+        return \Unirest::get(self::$base_url . "subdistrict", array(), $params);
+    }
+
+    /**
+    * Fungsi untuk mendapatkan data negara tujuan pengiriman internasional
+    * @param integer $country_id ID negara, jika null tampil semua nama negara
+    * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
+    */
+    function getInternationalDestination($country_id = NULL){
+        $params['id'] = $country_id;
+        return \Unirest::get(self::$base_url . "internationalDestination", array(), $params);
+    }
+
+    /**
+    * Fungsi untuk mendapatkan data kota asal yang mendukung pengiriman internasional
+    * @param integer $city_id
+    * @param integer $province_id
+    * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
+    */
+    function getInternationalOrigin($city_id  = NULL, $province_id = NULL){
+        $params['id'] = $city_id;
+        $params['province'] = $province_id;
+        return \Unirest::get(self::$base_url . "internationalOrigin", array(), $params);
+    }
+	
+    /**
+     * Fungsi untuk mendapatkan data ongkos kirim internasional
+     * @param integer $origin ID kota/kecamatan asal
+     * @param integer $destination ID negara tujuan
+     * @param integer $weight Berat kiriman dalam gram
+     * @param string $courier Kode kurir
+     * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
+     */
+    function getInternationalCost($origin, $destination, $weight, $courier = NULL) {
+        $params = array(
+            'origin' => $origin,
+            'destination' => $destination,
+            'weight' => $weight
+        );
+        if (!is_null($courier)) {
+            $params['courier'] = $courier;
+        }
+        return \Unirest::post(self::$base_url . "internationalCost", array(), http_build_query($params));
+    }
+	
+    /**
+     * Fungsi untuk mendapatkan data status pengiriman
+     * @param integer $waybill no resi pengiriman 
+     * @param string $courier Kode kurir
+     * @return object Object yang berisi informasi response, terdiri dari: code, headers, body, raw_body.
+     */
+	function getWaybill($waybill, $courier){
+		$params = array(
+            'waybill' => $waybill,
+            'courier' => $courier
+        );
+	    return \Unirest::post(self::$base_url . "waybill", array(), http_build_query($params));
+	}
 }
